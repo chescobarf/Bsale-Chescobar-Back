@@ -3,10 +3,14 @@ import Database from '../db/connection.js';
 import productRoutes from '../routes/product.js'
 import categoryRoutes from '../routes/category.js'
 import cors from 'cors'
+
+const corsOptions = {
+    origin: '*',
+}
 class Server {
     constructor() {
         this.app = express()
-        this.app.use(cors())
+        this.app.use(cors(corsOptions))
         this.port = process.env.PORT || 8080
         this.API = {
             product: '/products',
