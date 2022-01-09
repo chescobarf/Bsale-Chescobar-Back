@@ -24,5 +24,17 @@ export const getProductsByID = (req, res) => {
         }
     })
 }
+export const getProductsByCategories = (req, res) => {
+    const { id } = req.params
+    const query = `SELECT * FROM product WHERE category=${id}`
+    connection.query(query, (error, results) => {
+        if (error) throw error;
+        if (results.length > 0) {
+            res.json(results);
+        } else {
+            res.send('No data');
+        }
+    })
+}
 
 
