@@ -37,4 +37,17 @@ export const getProductsByCategories = (req, res) => {
     })
 }
 
+export const getProductsBySearch = (req, res) => {
+    const { term } = req.params
+    const query = `SELECT * FROM product WHERE name LIKE '%${term}%'`
+    connection.query(query, (error, results) => {
+        if (error) throw error;
+        if (results.length > 0) {
+            res.json(results);
+        } else {
+            res.send('No data');
+        }
+    })
+}
+
 
