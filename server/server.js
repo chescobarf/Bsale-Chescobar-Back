@@ -21,6 +21,22 @@ class Server {
     routes() {
         this.app.use(this.API.product, productRoutes)
         this.app.use(this.API.category, categoryRoutes)
+        this.app.get('/', function (req, res) {
+            res.json({
+                title: 'Hi! To use this API try using the next',
+                product: {
+                    allProducts: '/products',
+                    productByID: '/products/:id',
+                    productByCategoryID: '/products/category/:id',
+                    searchProductsByTerm: '/products/search/:term'
+                },
+                category: {
+                    allCategories: '/categories',
+                    categoryByID: '/categories/:id'
+                },
+                signature: 'This API was created by https://github.com/chescobarf'
+            })
+        });
     }
 
     start() {
